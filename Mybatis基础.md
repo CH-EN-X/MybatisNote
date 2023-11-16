@@ -350,7 +350,7 @@ java -jar sql_prepared_demo-0.0.1-SNAPSHOT.jar
 
 ![image-20221211130011973](assets/image-20221211130011973.png)
 
-> 把整个`' or '1'='1`作为一个完整的参数，赋值给第2个问号（`' or '1'='1`进行了转义，***只当做字符串使用***）
+> 把整个`' or '1'='1`作为一个完整的参数，赋值给第2个问号（`' or '1'='1`进行了转义，只当做字符串使用）
 
 
 
@@ -660,7 +660,7 @@ class SpringbootMybatisCrudApplicationTests {
 
 
 
-1.起别名（不推荐）：在SQL语句中，对不一样的列名起别名，别名和实体类属性名一样
+**起别名**：在SQL语句中，对不一样的列名起别名，别名和实体类属性名一样
 
 ```java
 @Select("select id, username, password, name, gender, image, job, entrydate, " +
@@ -676,7 +676,7 @@ public Emp getById(Integer id);
 
 
 
-2.手动结果映射（不推荐）：通过 @Results及@Result 进行手动结果映射
+**手动结果映射**：通过 @Results及@Result 进行手动结果映射
 
 ```java
 @Results({@Result(column = "dept_id", property = "deptId"),
@@ -773,7 +773,7 @@ order by update_time desc;
 
 接口方法：
 
-- 方式一 **字符串拼接**
+- 方式一
 
 ```java
 @Mapper
@@ -793,11 +793,11 @@ public interface EmpMapper {
 >
 > 1. 方法中的形参名和SQL语句中的参数占位符名保持一致
 >
-> 2. 模糊查询使用${...}进行**字符串拼接**，这种方式呢，由于是字符串拼接，并不是预编译的形式，所以效率不高、且存在sql注入风险。
+> 2. 模糊查询使用${...}进行字符串拼接，这种方式呢，由于是字符串拼接，并不是预编译的形式，所以效率不高、且存在sql注入风险。
 
 
 
-- 方式二 **concat**（解决SQL注入风险）
+- 方式二（解决SQL注入风险）
   - 使用MySQL提供的字符串拼接函数：concat('%' , '关键字' , '%')
 
 ~~~java
